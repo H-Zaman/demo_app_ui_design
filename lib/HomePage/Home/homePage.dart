@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../config.dart';
-import 'Home/cards/lowQuantity.dart';
-import 'Home/cards/upcomingExpiryDate.dart';
-import 'Home/charts/allReportSummary.dart';
-import 'Home/charts/allReportSummary2.dart';
-import 'Home/charts/salesReport.dart';
-import 'Home/sides/appBar.dart';
-import 'Home/sides/drawer.dart';
+import '../../config.dart';
+import 'cards/lowQuantity.dart';
+import 'cards/upcomingExpiryDate.dart';
+import 'charts/allReportSummary.dart';
+import 'charts/allReportSummary2.dart';
+import 'charts/salesReport.dart';
+import 'sides/appBar.dart';
+import 'sides/drawer.dart';
 
 class MyHomePage extends StatefulWidget {
   @override

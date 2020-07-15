@@ -26,7 +26,7 @@ class _AllReportSummaryState extends State<AllReportSummary> {
   void initState() {
     super.initState();
     final barGroup1 = makeGroupData(0, 250, 630, 230);
-    final barGroup2 = makeGroupData(1, 730, 1420, 2000);
+    final barGroup2 = makeGroupData(1, 730, 1420, 2400);
     final barGroup3 = makeGroupData(2, 200, 700, 400);
     final barGroup4 = makeGroupData(3, 450, 300, 900);
     final barGroup5 = makeGroupData(4,1100,1700, 2000);
@@ -55,25 +55,67 @@ class _AllReportSummaryState extends State<AllReportSummary> {
           borderRadius: BorderRadius.circular(width * 2)
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(width: width / 2,),
-          RotatedBox(
-            quarterTurns: 3,
-            child: Text(
-              'count (unwind array "items")',
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      fontSize: height * 1.4
-                  )
-              ),
+          Container(
+            padding: EdgeInsets.symmetric(
+              vertical: height * .7
+            ),
+            height: height * 24,
+//            color: Colors.green,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  '2400',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: height * 1.2
+                      )
+                  ),
+                ),
+                Text(
+                  '1800',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: height * 1.2
+                      )
+                  ),
+                ),
+                Text(
+                  '1200',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: height * 1.2
+                      )
+                  ),
+                ),
+                Text(
+                  '600',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: height * 1.2
+                      )
+                  ),
+                ),
+                Text(
+                  '0',
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          fontSize: height * 1.2
+                      )
+                  ),
+                ),
+              ],
             ),
           ),
           Column(
             children: <Widget>[
               Container(
+//                color: Colors.red,
                 height: height * 24,
-                width: width * 85,
+                width: width * 80,
                 child: Padding(
                   padding:  EdgeInsets.only(
                       top: height * 2,
@@ -82,23 +124,27 @@ class _AllReportSummaryState extends State<AllReportSummary> {
                   ),
                   child: BarChart(
                     BarChartData(
-                      maxY: 2300,
+//                      maxY: 2300,
                       titlesData: FlTitlesData(
                         show: true,
                         bottomTitles: SideTitles(
                           showTitles: false,
                         ),
                         leftTitles: SideTitles(
-                          showTitles: true,
+                          showTitles: false,
                           textStyle: TextStyle(
                               color: const Color(0xff7589a2),
                               fontWeight: FontWeight.bold,
                               fontSize: height * 1.4
                           ),
-                          reservedSize: width * 5,
+                          margin: width * 2,
+                          reservedSize: width*2,
                           interval: 1,
                           getTitles: (value) {
-                            if (value % 200 == 0){
+                            if(value == 0){
+                              return '';
+                            }
+                            else if (value % 5 == 0){
                               return '${value.round()}';
                             }
                             else

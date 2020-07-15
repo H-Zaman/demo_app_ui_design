@@ -14,7 +14,6 @@ class TodayReport extends StatefulWidget {
 
 class _TodayReportState extends State<TodayReport> {
   int currentIndex = 0;
-
   List<Widget> pages = [
     RevenueAndGain(),
     ExpenseAndLoss(),

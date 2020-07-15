@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testa/HomePage/Home/homePage.dart';
 import 'package:testa/HomePage/Report/reportHome.dart';
 import 'package:testa/HomePage/Report/todaysReport/todaysReport.dart';
-import 'package:testa/HomePage/homePage.dart';
+import 'package:testa/HomePage/profit&los/itemWise.dart';
+import 'package:testa/HomePage/profit&los/saleWise.dart';
+import 'package:testa/HomePage/stocks/batchStock.dart';
+import 'package:testa/HomePage/stocks/closingStocks.dart';
+import 'package:testa/HomePage/stocks/empiryStock.dart';
+import 'package:testa/HomePage/stocks/lowStocks.dart';
 import 'package:testa/config.dart';
 import 'package:testa/error404.dart';
 
@@ -284,8 +290,106 @@ class MyDrawer extends Drawer {
               ),
             ]),
             drawerButton(Icons.markunread_mailbox, 'Manage Products', ERROR404(),[]),
-            drawerButton(Icons.shopping_cart, 'Purchases', ERROR404(),[]),
-            drawerButton(Icons.store, 'Stocks', ERROR404(),[]),
+            drawerButton(Icons.shopping_cart, 'Profit and Loss', ERROR404(),[
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SaleWise()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Sale Wise',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ItemWise()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Item Wise',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+            drawerButton(Icons.store, 'Stocks', ERROR404(),[
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LowStocks()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Low Stocks',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ExpiryStocks()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Expiry Stock',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ClosingStocks()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Closing Stocks',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BatchStocks()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Batch Stock',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
             drawerButton(Icons.account_balance_wallet, 'Accounts', ERROR404(),[]),
             drawerButton(Icons.explicit, 'Expense', ERROR404(),[]),
           ],
