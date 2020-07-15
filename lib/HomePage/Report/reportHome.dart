@@ -47,7 +47,6 @@ class _ReportHomeState extends State<ReportHome> {
     SizeConfig().init(context);
     final double height = SizeConfig.safeBlockVertical;
     final double width = SizeConfig.safeBlockHorizontal;
-var item = items[2];
     return GestureDetector(
       onTap: ()=> FocusScope.of(context).requestFocus(new FocusNode()),
       child: Scaffold(

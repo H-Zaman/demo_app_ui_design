@@ -3,13 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:testa/config.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
+  final String title;
+  MyAppBar({this.title});
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return AppBar(
       backgroundColor: Color(0xff00CCCC),
       title: Text(
-        'Dashboard',
+        title,
         style: GoogleFonts.poppins(
           fontSize: SizeConfig.appBarTitle,
         ),

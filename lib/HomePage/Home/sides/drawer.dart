@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:testa/HomePage/Report/reportHome.dart';
+import 'package:testa/HomePage/Report/todaysReport/todaysReport.dart';
 import 'package:testa/HomePage/homePage.dart';
 import 'package:testa/config.dart';
 import 'package:testa/error404.dart';
@@ -160,7 +161,40 @@ class MyDrawer extends Drawer {
             ),
             //-----------------------------------------------drawerButtons
             drawerButton(Icons.home, 'Dashboard', MyHomePage(), []),
-            drawerButton(Icons.show_chart, 'Reports', ReportHome(), []),
+            drawerButton(Icons.show_chart, 'Reports', ReportHome(), [
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TodayReport()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Today\'s Report',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ReportHome()));
+                },
+                child: Container(
+                  height: height * 4,
+                  child: Center(
+                    child: Text(
+                      'Sales Report',
+                      style: TextStyle(
+                          fontSize: height * 1.9
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
             drawerButton(Icons.monetization_on, 'Sales', ERROR404(),[
               FlatButton(
                 onPressed: (){},

@@ -88,7 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppBar(),
+        appBar: MyAppBar(title: 'Dashboard',),
         drawer: MyDrawer(userName: userName,),
         body: Scrollbar(
           key: UniqueKey(),
