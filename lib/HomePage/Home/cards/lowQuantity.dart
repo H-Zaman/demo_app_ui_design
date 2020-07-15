@@ -4,8 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../config.dart';
 
 
-class LowQuantity extends StatelessWidget {
+class LowQuantity extends StatefulWidget {
+  @override
+  _LowQuantityState createState() => _LowQuantityState();
+}
+
+class _LowQuantityState extends State<LowQuantity> {
   final Color textColor = Color(0xff727C8E);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -60,6 +66,7 @@ class LowQuantity extends StatelessWidget {
         ),
         Expanded(
           child: Scrollbar(
+            key: UniqueKey(),
             child: ListView.builder(
               itemCount: demoDataLowQuantity.length,
               shrinkWrap: true,

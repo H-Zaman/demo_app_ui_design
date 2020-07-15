@@ -3,8 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../config.dart';
 
 
-class UpcomingExpiryDate extends StatelessWidget {
+class UpcomingExpiryDate extends StatefulWidget {
 
+  @override
+  _UpcomingExpiryDateState createState() => _UpcomingExpiryDateState();
+}
+
+class _UpcomingExpiryDateState extends State<UpcomingExpiryDate> {
   final Color textColor = Color(0xff727C8E);
 
   @override
@@ -61,6 +66,7 @@ class UpcomingExpiryDate extends StatelessWidget {
         ),
         Expanded(
           child: Scrollbar(
+            key: UniqueKey(),
             child: ListView.builder(
               itemCount: demoDataLowQuantity.length,
               shrinkWrap: true,
@@ -151,6 +157,42 @@ class UpcomingExpiryDate extends StatelessWidget {
 }
 
 final List<ModelLowQuantity> demoDataLowQuantity = [
+  ModelLowQuantity(
+      title:  'Syp Ace Padiatric',
+      subtitle: 'Syrup Ace Padiatric',
+      quantity: 3,
+      expiryDate: 'July 4, 2020'
+  ),
+  ModelLowQuantity(
+      title: 'Tab. Gastronal',
+      subtitle: 'Tablet Gastronal',
+      quantity: 9,
+      expiryDate: 'Nov 27, 2022'
+  ),
+  ModelLowQuantity(
+      title: 'Zyfolet Tab',
+      subtitle: 'Tablet Zyfolet',
+      quantity: 5,
+      expiryDate: 'Oct 2 2030'
+  ),
+  ModelLowQuantity(
+      title:  'Syp Ace Padiatric',
+      subtitle: 'Syrup Ace Padiatric',
+      quantity: 3,
+      expiryDate: 'July 4, 2020'
+  ),
+  ModelLowQuantity(
+      title: 'Tab. Gastronal',
+      subtitle: 'Tablet Gastronal',
+      quantity: 9,
+      expiryDate: 'Nov 27, 2022'
+  ),
+  ModelLowQuantity(
+      title: 'Zyfolet Tab',
+      subtitle: 'Tablet Zyfolet',
+      quantity: 5,
+      expiryDate: 'Oct 2 2030'
+  ),
   ModelLowQuantity(
       title:  'Syp Ace Padiatric',
       subtitle: 'Syrup Ace Padiatric',

@@ -91,6 +91,7 @@ class MyHomePageState extends State<MyHomePage> {
         appBar: MyAppBar(),
         drawer: MyDrawer(userName: userName,),
         body: Scrollbar(
+          key: UniqueKey(),
           child: Container(
             margin: EdgeInsets.symmetric(
               //TODO if 4 aligns with appbar icons

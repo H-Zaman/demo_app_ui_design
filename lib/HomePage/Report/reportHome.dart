@@ -9,9 +9,9 @@ class ReportHome extends StatefulWidget {
 
 class _ReportHomeState extends State<ReportHome> {
 
-  String _text = '';
   final duplicateItems = demoReport;
   var items = List<ModelReport>();
+
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _ReportHomeState extends State<ReportHome> {
     SizeConfig().init(context);
     final double height = SizeConfig.safeBlockVertical;
     final double width = SizeConfig.safeBlockHorizontal;
-
+var item = items[2];
     return GestureDetector(
       onTap: ()=> FocusScope.of(context).requestFocus(new FocusNode()),
       child: Scaffold(
@@ -67,11 +67,7 @@ class _ReportHomeState extends State<ReportHome> {
                   Icons.more_vert,
                   size: SizeConfig.appBarIcon,
                 ),
-                onSelected: (value){
-                  setState(() {
-                    _text = value;
-                  });
-                },
+                onSelected: (value){},
                 padding: EdgeInsets.zero,
                 itemBuilder: (context) => [
                   PopupMenuItem<String>(
@@ -145,7 +141,7 @@ class _ReportHomeState extends State<ReportHome> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -215,67 +211,483 @@ class _ReportHomeState extends State<ReportHome> {
                 ],
               ),
               SizedBox(height: height * 1,),
-              //TODO must be expanded
+              //TODO should be expanded
               Container(
                 height: height * 60,
                 child: ListView.builder(
                   itemCount: items.length,
-//                physics: NeverScrollableScrollPhysics(),
+//                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index){
                     var item = items[index];
-                    return Container(
-                      color: index % 2 == 0 ? Colors.white : Color(0xffDDE5F5),
-                      height: height * 6,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Text(
-                                (index+1).toString(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: height * 2.5
+                    return GestureDetector(
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (context){
+                            return AlertDialog(
+                              contentPadding: EdgeInsets.zero,
+                              content:
+                              Container(
+                                width: width * 90,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xff00CCCC),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Details',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.3,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                'Information',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.3,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Serial no.',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                (index+1).toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xffE2EAFA),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Date',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.date,
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Invoice no.',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.invoiceNo,
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xffE2EAFA ),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Customer name',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.customerName,
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Total',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.total.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xffE2EAFA),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Tax',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.tax.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Discount',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.discount.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xffE2EAFA),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Grand-total',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.grandTotal.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Colors.white,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Net-amount',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.netAMount.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 5,
+                                      color: Color(0xffE2EAFA),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 4),
+                                              child: Text(
+                                                'Due',
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: width * 2),
+                                              child: Text(
+                                                item.due.toString(),
+                                                style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                        );
+                      },
+                      child: Container(
+                        color: index % 2 == 0 ? Colors.white : Color(0xffDDE5F5),
+                        height: height * 6,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: Center(
+                                child: Text(
+                                  (index+1).toString(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: height * 2.5
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 6,
-                            child: Center(
-                              child: Text(
-                                item.invoiceNo,
-                                style: TextStyle(
-                                    fontSize: height * 2.5
+                            Expanded(
+                              flex: 6,
+                              child: Center(
+                                child: Text(
+                                  item.invoiceNo,
+                                  style: TextStyle(
+                                      fontSize: height * 2.5
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              '\$ ' + item.tax.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: height * 2.5,
-                                color: Colors.green
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                '\$ ' + item.tax.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: height * 2.5,
+                                  color: Colors.green
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
                 ),
               ),
               SizedBox(height: height,),
-              Text(
-                'Showing' + ' of ' + items.length.toString(),
-                style: TextStyle(
-                    fontSize: height * 2,
-                    color: Color(0xff727C8E)
-                ),
-              )
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  IconButton(
+                    onPressed: (){},
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      size: width * 5,
+                    ),
+                  ),
+                  Text(
+                    'Showing ' + (1).toString() +' - '+ (demoReport.length).toString() + ' out of ' + demoReport.length.toString(),
+                    style: TextStyle(
+                        fontSize: height * 2,
+                        color: Color(0xff727C8E)
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: (){},
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      size: width * 5,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         )
