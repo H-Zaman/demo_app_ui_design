@@ -1,148 +1,199 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:testa/HomePage/Home/sides/appBar.dart';
 import 'package:testa/HomePage/Home/sides/drawer.dart';
-import 'package:testa/HomePage/stocks/demoData/dataLowStock.dart';
-import 'package:testa/HomePage/stocks/models/modelStocks.dart';
+import 'package:testa/HomePage/financialStatements/demoData.dart';
 import 'package:testa/config.dart';
 
-class LowStocks extends StatefulWidget {
+class CashFlow extends StatefulWidget {
   @override
-  _LowStocksState createState() => _LowStocksState();
+  _CashFlowState createState() => _CashFlowState();
 }
 
-class _LowStocksState extends State<LowStocks> {
-  final duplicateItems = demoStockData;
-  var items = List<ModelStocks>();
+class _CashFlowState extends State<CashFlow> {
 
-  int initial = 1;
-  int end = 10;
-
-  @override
-  void initState() {
-    super.initState();
-    items.addAll(duplicateItems);
-  }
-  void filterSearchResults(String query) {
-    List<ModelStocks> dummySearchList = List<ModelStocks>();
-    dummySearchList.addAll(duplicateItems);
-    if(query.isNotEmpty) {
-      List<ModelStocks> dummyListData = List<ModelStocks>();
-      dummySearchList.forEach((item) {
-        if(item.itemName.toLowerCase().contains(query.toLowerCase())) {
-          dummyListData.add(item);
-        }
-      });
-      setState(() {
-        items.clear();
-        items.addAll(dummyListData);
-      });
-      return;
-    } else {
-      setState(() {
-        items.clear();
-        items.addAll(duplicateItems);
-      });
-    }
-  }
+  String _startDate = 'MMM-DD-YYYY';
+  String _endDate = 'MMM-DD-YYYY';
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final double height = SizeConfig.safeBlockVertical;
     final double width = SizeConfig.safeBlockHorizontal;
 
-    int total = 0;
-    demoStockData.forEach((element) {total+=element.currentStock;});
+    double total = 0;
+    demoDataCashOnSale.forEach((element) {total+=element.payment;});
 
-    return GestureDetector(
-      onTap: ()=> FocusScope.of(context).requestFocus(new FocusNode()),
-      child: Scaffold(
-          appBar: MyAppBar(title: 'Low Stocks',),
-          drawer: MyDrawer(userName: 'Annie',),
-          body: Container(
-            margin: EdgeInsets.symmetric(
-                vertical: height,
-                horizontal: width * 5
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-//                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-//            color: Colors.red,
-                      height: height * 8,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: width * 5
-                      ),
-                      padding: EdgeInsets.all(height * 1),
-                      child: TextField(
-                        onChanged: (value) {
-                          filterSearchResults(value);
-                        },
-                        style: TextStyle(
-                            fontSize: height * 2.5
-                        ),
-//                  autofocus: true,
-                        decoration: InputDecoration.collapsed(
-                          hintText: "Search By Name",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(width * 2)
-                              )),
-                        ).copyWith(
-                          labelText: "Search By Name",
-                          prefixIcon: Icon(Icons.search),
-                        ),
-                      )
+    return Scaffold(
+        appBar: MyAppBar(title: 'Cash Flow',),
+        drawer: MyDrawer(userName: 'Annine',),
+        body: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: Container(
+            height: height * 93.6,
+            child: Column(
+              children: <Widget>[
+                //-----------------------------------------------------top stuff
+                Card(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: width * 2
                   ),
-                  SizedBox(height: height * 2,),
-                  Container(
-                    height: height * 5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff00CCCC),
+                  elevation: 3.0,
+                  child: Container(
+                    height: height * 7,
+                    padding: EdgeInsets.symmetric(
+                        vertical: height,
+                        horizontal: width * 2
                     ),
                     child: Row(
                       children: <Widget>[
+                        //-----------------------------------------start date
                         Expanded(
-                          flex: 7,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: width * 2
-                            ),
-                            child: Text(
-                              'Name of Item',
-                              style: TextStyle(
-                                  fontSize: height * 2.3,
-                                  fontWeight: FontWeight.bold
+                          flex: 4,
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: (){
+                                showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1990),
+                                  lastDate: DateTime(2100),
+                                ).then((value) {
+                                  setState(() {
+                                    _startDate = DateFormat.yMMMd().format(value);
+                                  });
+                                  print(_startDate);
+                                });
+                              },
+                              child: Text(
+                                _startDate ?? '',
+                                style: TextStyle(
+                                    fontSize: height  *2.2
+                                ),
                               ),
                             ),
                           ),
                         ),
+                        //-----------------------------------------end date
                         Expanded(
-                          flex: 3,
-                          child: Text(
-                            '\$ Price',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: height * 2.3,
+                          flex: 4,
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: (){
+                                showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1990),
+                                  lastDate: DateTime(2100),
+                                ).then((value) {
+                                  setState(() {
+                                    _endDate = DateFormat.yMMMd().format(value);
+                                  });
+                                });
+                              },
+                              child: Text(
+                                _endDate ?? '',
+                                style: TextStyle(
+                                    fontSize: height  *2.2
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        //-----------------------------------------search
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                            onPressed: (){},
+                            icon: Icon(
+                              Icons.search,
+                              color: Colors.grey,
+                              size: SizeConfig.appBarIcon,
+                            ),
+                          ),
+                        ),
+                        //-----------------------------------------refresh
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                            onPressed: (){},
+                            icon: Icon(
+                              Icons.refresh,
+                              color: Colors.grey,
+                              size: SizeConfig.appBarIcon,
                             ),
                           ),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(height: height * 1,),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: items.length,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index){
-                      var item = items[index];
-                      return GestureDetector(
-                        onTap: (){
-                          showDialog(
+                ),
+                //-----------------------------------------------------mid stuff
+                SizedBox(height: height * 2,),
+                Container(
+                  height: height * 6,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: width * 2
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(width * 2),
+                    color: Color(0xff00CCCC),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: width * 2
+                          ),
+                          child: Text(
+                            'Date',
+                            style: TextStyle(
+                                fontSize: height * 2.3,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: width * 2
+                          ),
+                          child: Text(
+                            'Invoice',
+                            style: TextStyle(
+                                fontSize: height * 2.3,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Text(
+                          'Payment',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: height * 2.3,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: height * 1,),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: demoDataCashOnSale.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index){
+                    var item = demoDataCashOnSale[index];
+                    return GestureDetector(
+                      onTap: (){
+                        showDialog(
                             context: context,
                             builder: (context){
                               return AlertDialog(
@@ -212,7 +263,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 2),
                                                 child: Text(
-                                                  item.serial.toString(),
+                                                  (index+1).toString(),
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -233,7 +284,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 4),
                                                 child: Text(
-                                                  'Name of item',
+                                                  'Date',
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -246,7 +297,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 2),
                                                 child: Text(
-                                                  item.itemName,
+                                                  item.date,
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -267,7 +318,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 4),
                                                 child: Text(
-                                                  'Manufacturer',
+                                                  'Transaction ID',
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -280,75 +331,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 2),
                                                 child: Text(
-                                                  item.manufacturer,
-                                                  style: TextStyle(
-                                                      fontSize: height * 2.1,
-                                                      color: Colors.black
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: height * 5,
-                                        color: Color(0xffE2EAFA ),
-                                        child: Row(
-                                          children: <Widget>[
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(left: width * 4),
-                                                child: Text(
-                                                  'Category',
-                                                  style: TextStyle(
-                                                    fontSize: height * 2.1,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(left: width * 2),
-                                                child: Text(
-                                                  item.category,
-                                                  style: TextStyle(
-                                                    fontSize: height * 2.1,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: height * 5,
-                                        color: Colors.white,
-                                        child: Row(
-                                          children: <Widget>[
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(left: width * 4),
-                                                child: Text(
-                                                  'Current stock',
-                                                  style: TextStyle(
-                                                    fontSize: height * 2.1,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(left: width * 2),
-                                                child: Text(
-                                                  item.currentStock.toString() + ' ' + item.stockType,
+                                                  item.invoice,
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -369,7 +352,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 4),
                                                 child: Text(
-                                                  'Purchase price',
+                                                  'Vendor name',
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -382,7 +365,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 2),
                                                 child: Text(
-                                                  '\$' + item.purchaseRate.toString(),
+                                                  item.vendorName,
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -403,7 +386,7 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 4),
                                                 child: Text(
-                                                  'Current value',
+                                                  'Payment',
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -416,7 +399,74 @@ class _LowStocksState extends State<LowStocks> {
                                               child: Padding(
                                                 padding: EdgeInsets.only(left: width * 2),
                                                 child: Text(
-                                                  '\$' + item.currentValue.toString(),
+                                                  '\$' + item.payment.toString(),
+                                                  style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        height: height * 5,
+                                        color: Color(0xffE2EAFA),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: width * 4),
+                                                child: Text(
+                                                  'Received',
+                                                  style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: width * 2),
+                                                child: Text(
+                                                  '\$' + item.received.toString(),
+                                                  style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        color: Colors.white,
+                                        child: Row(
+                                          children: <Widget>[
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: width * 4),
+                                                child: Text(
+                                                  'Description',
+                                                  style: TextStyle(
+                                                    fontSize: height * 2.1,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 5,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(left: width * 2),
+                                                child: Text(
+                                                  item.description,
                                                   style: TextStyle(
                                                     fontSize: height * 2.1,
                                                     color: Colors.black,
@@ -432,124 +482,138 @@ class _LowStocksState extends State<LowStocks> {
                                 ),
                               );
                             }
-                          );
-                        },
-                        child: Container(
-                          color: index % 2 == 0 ? Colors.white : Color(0xffDDE5F5),
-                          height: height * 6,
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 7,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    left: width * 2
-                                  ),
-                                  child: Text(
-                                    item.itemName,
-                                    style: TextStyle(
-                                        fontSize: height * 2
-                                    ),
-                                  ),
+                        );
+                      },
+                      child: Container(
+                        color: index % 2 == 0 ? Colors.white : Color(0xffDDE5F5),
+                        height: height * 6,
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: width * 4
                                 ),
-                              ),
-                              Expanded(
-                                flex: 3,
                                 child: Text(
-                                  item.currentStock.toString() + ' ' + item.stockType,
+                                  item.date,
                                   style: TextStyle(
-                                      fontSize: height * 2,
+                                      fontSize: height * 2
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  SizedBox(height: height,),
-                  /*Container(height: height * 5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff00CCCC),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 7,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: width * 2
-                            ),
-                            child: Text(
-                              'Total',
-                              style: TextStyle(
-                                  fontSize: height * 2.3,
-                                  fontWeight: FontWeight.bold
                               ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 4,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: width * 2
+                                ),
+                                child: Text(
+                                  item.invoice,
+                                  style: TextStyle(
+                                    fontSize: height * 2.3,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                '\$' + item.payment.toString(),
+                                style: TextStyle(
+                                  fontSize: height * 2,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                        Expanded(
-                          flex: 3,
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: height,),
+                Container(height: height * 5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(width * 2),
+                    color: Color(0xff00CCCC),
+                  ),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: width * 2
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: width * 2
+                          ),
                           child: Text(
-                            total.toString(),
+                            '',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: height * 2.3,
+                                fontSize: height * 2.3,
+                                fontWeight: FontWeight.bold
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),*/
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: (){
-                          setState(() {
-                            if(initial>10){
-                              initial-=10;
-                              end -=10;
-                            }
-                          });
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          size: width * 5,
                         ),
                       ),
-                      Text(
-                        'Showing ' + initial.toString() +' - '+ end.toString() + ' out of ' + '100',
-                        style: TextStyle(
-                            fontSize: height * 2,
-                            color: Color(0xff727C8E)
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          'Total',
+                          style: TextStyle(
+                              fontSize: height * 2.3,
+                              fontWeight: FontWeight.bold
+                          ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: (){
-                          setState(() {
-                            if(end<100){
-                              initial +=10;
-                              end +=10;
-                            }
-                          });
-                        },
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          size: width * 5,
+                      Expanded(
+                        flex: 3,
+                        child: Text(
+                          '\$' + total.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: height * 2.3,
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
-                  SizedBox(height: height,)
-                ],
-              ),
+                ),
+                //-----------------------------------------------------bottom stuff
+                Spacer(),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: (){},
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: width * 5,
+                      ),
+                    ),
+                    Text(
+                      'Showing ' + '1' +' - '+ '13' + ' out of ' + '100',
+                      style: TextStyle(
+                          fontSize: height * 2,
+                          color: Color(0xff727C8E)
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: (){},
+                      icon: Icon(
+                        Icons.arrow_forward_ios,
+                        size: width * 5,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: height,)
+              ],
             ),
-          )
-      ),
+          ),
+        )
     );
   }
 }

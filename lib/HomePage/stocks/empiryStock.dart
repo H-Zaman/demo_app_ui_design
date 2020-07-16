@@ -14,6 +14,9 @@ class _ExpiryStocksState extends State<ExpiryStocks> {
   final duplicateItems = demoStockData;
   var items = List<ModelStocks>();
 
+  int initial =1;
+  int end = 10;
+
   @override
   void initState() {
     super.initState();
@@ -98,7 +101,7 @@ class _ExpiryStocksState extends State<ExpiryStocks> {
                     height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -500,10 +503,10 @@ class _ExpiryStocksState extends State<ExpiryStocks> {
                     },
                   ),
                   SizedBox(height: height,),
-                  Container(height: height * 5,
+                  /*Container(height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -534,7 +537,48 @@ class _ExpiryStocksState extends State<ExpiryStocks> {
                         )
                       ],
                     ),
+                  ),*/
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            if(initial>10){
+                              initial-=10;
+                              end -=10;
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          size: width * 5,
+                        ),
+                      ),
+                      Text(
+                        'Showing ' + initial.toString() +' - '+ end.toString() + ' out of ' + '100',
+                        style: TextStyle(
+                            fontSize: height * 2,
+                            color: Color(0xff727C8E)
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            if(end<100){
+                              initial +=10;
+                              end +=10;
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          size: width * 5,
+                        ),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: height,)
                 ],
               ),
             ),

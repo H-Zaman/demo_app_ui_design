@@ -8,6 +8,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    final double height = SizeConfig.safeBlockVertical;
+    final double width = SizeConfig.safeBlockHorizontal;
     return AppBar(
       backgroundColor: Color(0xff00CCCC),
       title: Text(
@@ -17,13 +19,73 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget{
         ),
       ),
       actions: <Widget>[
-        IconButton(
-          onPressed: (){},
+        PopupMenuButton(
           icon: Icon(
             Icons.more_vert,
-            size: SizeConfig.appBarIcon * 1.3,
-            color: Color(0xff727C8E),
+            size: SizeConfig.appBarIcon,
           ),
+          onSelected: (value){},
+          padding: EdgeInsets.zero,
+          itemBuilder: (context) => [
+            PopupMenuItem<String>(
+              enabled: false,
+              child: Container(
+                height: height * 5,
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.sort,
+                      size: SizeConfig.appBarIcon * .7,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: width,),
+                    Text(
+                      'Sort BY',
+                      style: TextStyle(
+                          fontSize: height * 2
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'date',
+              child: Text(
+                'by Date',
+                style: TextStyle(
+                    fontSize: height * 1.8
+                ),
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'amount',
+              child: Text(
+                'by Amount',
+                style: TextStyle(
+                    fontSize: height * 1.8
+                ),
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'ascending',
+              child: Text(
+                'by Ascending',
+                style: TextStyle(
+                    fontSize: height * 1.8
+                ),
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'descending',
+              child: Text(
+                'by Descending',
+                style: TextStyle(
+                    fontSize: height * 1.8
+                ),
+              ),
+            ),
+          ],
         )
       ],
     );

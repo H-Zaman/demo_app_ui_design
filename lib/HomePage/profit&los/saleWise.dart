@@ -60,7 +60,7 @@ class _SaleWiseState extends State<SaleWise> {
           body: Container(
             margin: EdgeInsets.symmetric(
                 vertical: height,
-                horizontal: width * 5
+                horizontal: width * 2
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -100,7 +100,7 @@ class _SaleWiseState extends State<SaleWise> {
                     height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -443,7 +443,6 @@ class _SaleWiseState extends State<SaleWise> {
                                     totalQuantity.toString(),
                                     style: TextStyle(
                                         fontSize: height * 2.3,
-                                        fontWeight: FontWeight.bold
                                     ),
                                   ),
                                 ),
@@ -467,7 +466,7 @@ class _SaleWiseState extends State<SaleWise> {
                   Container(height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[

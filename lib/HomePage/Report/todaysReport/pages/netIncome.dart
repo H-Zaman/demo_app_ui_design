@@ -21,24 +21,29 @@ class NetIncome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           //-----------------------------------------------------------titles
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Income',
-                style: TextStyle(
-                    fontSize: height * 2.1,
-                    fontWeight: FontWeight.w600
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 1.3
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Income',
+                  style: TextStyle(
+                      fontSize: height * 2.1,
+                      fontWeight: FontWeight.w600
+                  ),
                 ),
-              ),
-              Text(
-                'Total Amount',
-                style: TextStyle(
-                    fontSize: height * 2.1,
-                    fontWeight: FontWeight.w600
-                ),
-              )
-            ],
+                Text(
+                  'Total Amount',
+                  style: TextStyle(
+                      fontSize: height * 2.1,
+                      fontWeight: FontWeight.w600
+                  ),
+                )
+              ],
+            ),
           ),
           //--------------------------------------------------list view of items
           Flexible(
@@ -111,10 +116,15 @@ class NetIncome extends StatelessWidget {
             ),
           ),
           //-----------------------------------------------------------total
-          Divider(thickness: width / 2,color: Colors.black54,height: height * 3,),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: width * 2
+                horizontal: width * 1.3
+            ),
+            child: Divider(thickness: width / 2,color: Colors.black54,height: height * 3,),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 1.3
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

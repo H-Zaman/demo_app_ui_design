@@ -48,8 +48,8 @@ class _TodayReportState extends State<TodayReport> {
                   fontSize: height * 1.7
               ),
             ),
-            activeColor: Color(0xff196EE6),
-            inactiveColor: Colors.black,
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
@@ -61,8 +61,8 @@ class _TodayReportState extends State<TodayReport> {
                 fontSize: height * 1.7
               ),
             ),
-            activeColor: Color(0xff196EE6),
-            inactiveColor: Colors.black,
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
@@ -74,8 +74,8 @@ class _TodayReportState extends State<TodayReport> {
                   fontSize: height * 1.7
               ),
             ),
-            activeColor: Color(0xff196EE6),
-            inactiveColor: Colors.black,
+            activeColor: Colors.white,
+            inactiveColor: Colors.white,
             textAlign: TextAlign.center,
           ),
         ],

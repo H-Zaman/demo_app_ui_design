@@ -60,7 +60,7 @@ class _ItemWiseState extends State<ItemWise> {
           body: Container(
             margin: EdgeInsets.symmetric(
                 vertical: height,
-                horizontal: width * 5
+                horizontal: width * 2
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -100,7 +100,7 @@ class _ItemWiseState extends State<ItemWise> {
                     height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -239,40 +239,6 @@ class _ItemWiseState extends State<ItemWise> {
                                         ),
                                         Container(
                                           height: height * 5,
-                                          color: Color(0xffE2EAFA),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Expanded(
-                                                flex: 5,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(left: width * 4),
-                                                  child: Text(
-                                                    'Invoice',
-                                                    style: TextStyle(
-                                                      fontSize: height * 2.1,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                flex: 5,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(left: width * 2),
-                                                  child: Text(
-                                                    item.invoice,
-                                                    style: TextStyle(
-                                                      fontSize: height * 2.1,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: height * 5,
                                           color: Colors.white,
                                           child: Row(
                                             children: <Widget>[
@@ -295,6 +261,108 @@ class _ItemWiseState extends State<ItemWise> {
                                                   padding: EdgeInsets.only(left: width * 2),
                                                   child: Text(
                                                     item.saleQuantity.toString(),
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: height * 5,
+                                          color: Colors.white,
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 4),
+                                                  child: Text(
+                                                    'Item name',
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 2),
+                                                  child: Text(
+                                                    item.itemName,
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: height * 5,
+                                          color: Color(0xffE2EAFA),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 4),
+                                                  child: Text(
+                                                    'Average Sale',
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 2),
+                                                  child: Text(
+                                                    item.avgSaleValue.toString(),
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: height * 5,
+                                          color: Colors.white,
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 4),
+                                                  child: Text(
+                                                    'Average Purchase',
+                                                    style: TextStyle(
+                                                      fontSize: height * 2.1,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 5,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(left: width * 2),
+                                                  child: Text(
+                                                    item.avgPurchaseValue.toString(),
                                                     style: TextStyle(
                                                       fontSize: height * 2.1,
                                                       color: Colors.black,
@@ -443,7 +511,6 @@ class _ItemWiseState extends State<ItemWise> {
                                     totalQuantity.toString(),
                                     style: TextStyle(
                                         fontSize: height * 2.3,
-                                        fontWeight: FontWeight.bold
                                     ),
                                   ),
                                 ),
@@ -467,7 +534,7 @@ class _ItemWiseState extends State<ItemWise> {
                   Container(height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[

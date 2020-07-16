@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testa/HomePage/login-reg-start/SplashScreen.dart';
 
 import 'HomePage/Home/homePage.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff00CCCC),
         fontFamily: 'Popins',
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }

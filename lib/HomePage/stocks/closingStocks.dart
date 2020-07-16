@@ -98,7 +98,7 @@ class _ClosingStocksState extends State<ClosingStocks> {
                     height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -401,7 +401,7 @@ class _ClosingStocksState extends State<ClosingStocks> {
                   Container(height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[

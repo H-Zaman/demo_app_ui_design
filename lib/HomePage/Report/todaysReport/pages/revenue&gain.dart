@@ -22,26 +22,34 @@ class RevenueAndGain extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: height,),
           //-----------------------------------------------------------titles
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Revenues and Gains',
-                style: TextStyle(
-                  fontSize: height * 2.1,
-                  fontWeight: FontWeight.w600
-                ),
-              ),
-              Text(
-                'Total Amount',
-                style: TextStyle(
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 1.3
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Revenues and Gains',
+                  style: TextStyle(
                     fontSize: height * 2.1,
                     fontWeight: FontWeight.w600
+                  ),
                 ),
-              )
-            ],
+                Text(
+                  'Total Amount',
+                  style: TextStyle(
+                      fontSize: height * 2.1,
+                      fontWeight: FontWeight.w600
+                  ),
+                )
+              ],
+            ),
           ),
+          SizedBox(height: height,),
+
           //--------------------------------------------------list view of items
           Flexible(
             child: ListView.builder(
@@ -112,10 +120,15 @@ class RevenueAndGain extends StatelessWidget {
             ),
           ),
           //-----------------------------------------------------------total
-          Divider(thickness: width / 2,color: Colors.black54,height: height * 3,),
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: width * 2
+                horizontal: width * 1.3
+            ),
+            child: Divider(thickness: width / 2,color: Colors.black54,height: height * 3,),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 1.3
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

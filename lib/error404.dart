@@ -7,6 +7,7 @@ class ERROR404 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff00CCCC),
         title: Text(
           'ERROR 404',
           style: TextStyle(
@@ -21,7 +22,7 @@ class ERROR404 extends StatelessWidget {
           'PAGE DOES NOT EXIST',
           style: TextStyle(
             fontSize: 30,
-            color: Colors.red
+            color: Color(0xff00CCCC)
           ),
         ),
       ),

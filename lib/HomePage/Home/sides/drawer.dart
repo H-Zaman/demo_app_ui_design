@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:testa/HomePage/Home/homePage.dart';
 import 'package:testa/HomePage/Report/reportHome.dart';
 import 'package:testa/HomePage/Report/todaysReport/todaysReport.dart';
+import 'package:testa/HomePage/financialStatements/cashFlow.dart';
+import 'package:testa/HomePage/financialStatements/cashOnSales.dart';
 import 'package:testa/HomePage/profit&los/itemWise.dart';
 import 'package:testa/HomePage/profit&los/saleWise.dart';
 import 'package:testa/HomePage/stocks/batchStock.dart';
@@ -231,14 +233,16 @@ class MyDrawer extends Drawer {
                 ),
               ),
             ]),
-            drawerButton(Icons.person_outline, 'Patients', ERROR404(),[
+            drawerButton(Icons.markunread_mailbox, 'Financial Statements', ERROR404(),[
               FlatButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CashOnSales()));
+                },
                 child: Container(
                   height: height * 4,
                   child: Center(
                     child: Text(
-                      'Patient Menu 1',
+                      'Cash On Sales',
                       style: TextStyle(
                           fontSize: height * 1.9
                       ),
@@ -247,40 +251,14 @@ class MyDrawer extends Drawer {
                 ),
               ),
               FlatButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CashFlow()));
+                },
                 child: Container(
                   height: height * 4,
                   child: Center(
                     child: Text(
-                      'Patient Menu 2',
-                      style: TextStyle(
-                          fontSize: height * 1.9
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              FlatButton(
-                onPressed: (){},
-                child: Container(
-                  height: height * 4,
-                  child: Center(
-                    child: Text(
-                      'Patient Menu 3',
-                      style: TextStyle(
-                          fontSize: height * 1.9
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              FlatButton(
-                onPressed: (){},
-                child: Container(
-                  height: height * 4,
-                  child: Center(
-                    child: Text(
-                      'Patient Menu 4',
+                      'Cash Flow',
                       style: TextStyle(
                           fontSize: height * 1.9
                       ),
@@ -289,7 +267,6 @@ class MyDrawer extends Drawer {
                 ),
               ),
             ]),
-            drawerButton(Icons.markunread_mailbox, 'Manage Products', ERROR404(),[]),
             drawerButton(Icons.shopping_cart, 'Profit and Loss', ERROR404(),[
               FlatButton(
                 onPressed: (){
@@ -391,7 +368,6 @@ class MyDrawer extends Drawer {
               ),
             ]),
             drawerButton(Icons.account_balance_wallet, 'Accounts', ERROR404(),[]),
-            drawerButton(Icons.explicit, 'Expense', ERROR404(),[]),
           ],
         ),
       ),

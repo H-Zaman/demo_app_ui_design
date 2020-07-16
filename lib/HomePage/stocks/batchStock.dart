@@ -94,7 +94,7 @@ class _BatchStocksState extends State<BatchStocks> {
                     height: height * 5,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(width * 2),
-                      color: Color(0xff15A1DA),
+                      color: Color(0xff00CCCC),
                     ),
                     child: Row(
                       children: <Widget>[
@@ -461,6 +461,33 @@ class _BatchStocksState extends State<BatchStocks> {
                       );
                     },
                   ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: (){},
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          size: width * 5,
+                        ),
+                      ),
+                      Text(
+                        'Showing ' + '1' +' - '+ '13' + ' out of ' + '100',
+                        style: TextStyle(
+                            fontSize: height * 2,
+                            color: Color(0xff727C8E)
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: (){},
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          size: width * 5,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height,)
                 ],
               ),
             ),

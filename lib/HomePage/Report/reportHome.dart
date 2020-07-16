@@ -132,7 +132,7 @@ class _ReportHomeState extends State<ReportHome> {
             ],
           ),
         ),
-        drawer: MyDrawer(userName: 'Annie',),
+        drawer: MyDrawer(userName: 'aaAnnie',),
         body: Container(
           margin: EdgeInsets.symmetric(
             vertical: height,
@@ -144,11 +144,12 @@ class _ReportHomeState extends State<ReportHome> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-//            color: Colors.red,
-                  height: height * 8,
-                  margin: EdgeInsets.symmetric(
-                      horizontal: width * 5
-                  ),
+//                  color: Colors.red,
+//                  height: height * 8,
+              width: width * 90,
+//                  margin: EdgeInsets.symmetric(
+//                      horizontal: width * 5
+//                  ),
                   padding: EdgeInsets.all(height * 1),
                   child: TextField(
                     onChanged: (value) {
@@ -625,8 +626,7 @@ class _ReportHomeState extends State<ReportHome> {
                                 child: Text(
                                   (index+1).toString(),
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: height * 2.5
+                                      fontSize: height * 2.2
                                   ),
                                 ),
                               ),
@@ -637,7 +637,7 @@ class _ReportHomeState extends State<ReportHome> {
                                 child: Text(
                                   item.invoiceNo,
                                   style: TextStyle(
-                                      fontSize: height * 2.5
+                                      fontSize: height * 2.2
                                   ),
                                 ),
                               ),
@@ -648,7 +648,7 @@ class _ReportHomeState extends State<ReportHome> {
                                 '\$ ' + item.tax.toString(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: height * 2.5,
+                                  fontSize: height * 2.2,
                                   color: Colors.green
                                 ),
                               ),
